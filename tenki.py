@@ -3,11 +3,19 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def func():
+def print_tenki():
+
+    print("天気予報(地名を入力)")
+    strgin_region = input()
+    region_list = ["八重山地方", "宮古島地方", ]
+    url_list = []
+    region = 
+
 
     #気象庁のHP（秋田県）
     #url = 'https://tenki.jp/forecast/3/16/4410/13208/'
-    url = 'https://www.jma.go.jp/jp/yoho/309.html'
+    
+    url = 'https://www.jma.go.jp/jp/yoho/' + region + '.html'
 
     #http request
     r = requests.get(url)
@@ -43,7 +51,7 @@ def func():
 
     #出力
     #print("天気予報:{}".format(area))
-    print("天気予報:秋田県")
+    print("天気予報:{}県")
     print()
     print("天気:")
     print("{}".format(today_weather))
@@ -57,4 +65,4 @@ def func():
     print("最低気温:{}".format(temp_min))
 
 if __name__ == "__main__":
-    func()
+    print_tenki()
