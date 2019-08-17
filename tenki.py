@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 def get_href(x):
 
     i = 201
-    flag = 0
+    flag = False
     while i < 221:
         url = 'https://www.jma.go.jp/jp/yoho/' + str(i) + '.html'
         response = requests.get(url)
@@ -14,14 +14,15 @@ def get_href(x):
         for link in links:
             href, title = link.get('href'), link.get('title')
             if x == title:
-                flag = 1
+                flag = True
                 break
-        if flag == 1:
-            break
-        i += 1
+        else:
+            i += 1
+            continue
+        break
 
     return href
-    
+
 
 def print_tenki():
 
@@ -31,9 +32,6 @@ def print_tenki():
     number = get_href(region)
 
     print(number)
-
-    #気象庁のHP（秋田県）
-    #url = 'https://tenki.jp/forecast/3/16/4410/13208/'
     
     url = 'https://www.jma.go.jp/jp/yoho/' + number
 
