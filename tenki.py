@@ -2,20 +2,40 @@
 import requests
 from bs4 import BeautifulSoup
 
+def get_href(x):
+
+    i = 201
+    flag = 0
+    while i < 221:
+        url = 'https://www.jma.go.jp/jp/yoho/' + str(i) + '.html'
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text,'lxml')
+        links = soup.findAll('area')
+        for link in links:
+            href, title = link.get('href'), link.get('title')
+            if x == title:
+                flag = 1
+                break
+        if flag == 1:
+            break
+        i += 1
+
+    return href
+    
 
 def print_tenki():
 
     print("天気予報(地名を入力)")
-    strgin_region = input()
-    region_list = ["八重山地方", "宮古島地方", ]
-    url_list = []
-    region = 
+    region = input()
 
+    number = get_href(region)
+
+    print(number)
 
     #気象庁のHP（秋田県）
     #url = 'https://tenki.jp/forecast/3/16/4410/13208/'
     
-    url = 'https://www.jma.go.jp/jp/yoho/' + region + '.html'
+    url = 'https://www.jma.go.jp/jp/yoho/' + number
 
     #http request
     r = requests.get(url)
@@ -51,7 +71,7 @@ def print_tenki():
 
     #出力
     #print("天気予報:{}".format(area))
-    print("天気予報:{}県")
+    print("天気予報:{}県".format(region))
     print()
     print("天気:")
     print("{}".format(today_weather))
