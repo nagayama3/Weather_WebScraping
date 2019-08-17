@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 def get_href(x):
 
     i = 201
-    flag = False
     while i < 221:
         url = 'https://www.jma.go.jp/jp/yoho/' + str(i) + '.html'
         response = requests.get(url)
@@ -14,7 +13,6 @@ def get_href(x):
         for link in links:
             href, title = link.get('href'), link.get('title')
             if x == title:
-                flag = True
                 break
         else:
             i += 1
@@ -31,7 +29,7 @@ def print_tenki():
 
     number = get_href(region)
 
-    print(number)
+    #print(number)
     
     url = 'https://www.jma.go.jp/jp/yoho/' + number
 
