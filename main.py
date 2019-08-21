@@ -33,13 +33,12 @@ def callback():
     app.logger.info("Request body: " + body)
  
     # handle webhook body
-　# 署名を検証し、問題なければhandleに定義されている関数を呼び出す。
     try:
         handler.handle(body, signature)
-　# 署名検証で失敗した場合、例外を出す。
+    #署名検証で失敗した場合、例外を出す。
     except InvalidSignatureError:
         abort(400)
-　# handleの処理を終えればOK
+    #handleの処理を終えればOK
     return 'OK'
 
 @handler.add(FollowEvent)
@@ -94,18 +93,23 @@ def handle_message(event):
     #出力
     line_bot_api.reply_message(
         #print("天気予報:{}".format(area))
-        print("天気予報:{}県".format(region))
-        print()
-        print("天気:")
-        print("{}".format(today_weather))
-        print("詳細:")
-        print("{}".format(today_info))
-        print()
-        print("降水確率:{}".format(today_rain))
-        print("気温")
-        print("都市:{}".format(temp_city))
-        print("最高気温:{}".format(temp_max))
-        print("最低気温:{}".format(temp_min))
+        event.reply_token,
+        TextSendMessage(text=event.message.text)
+        
+    
+        #print("天気予報:{}県".format(region))
+        #print()
+        #print("天気:")
+        #print("{}".format(today_weather))
+        #print("詳細:")
+        #print("{}".format(today_info))
+        #print()
+        #print("降水確率:{}".format(today_rain))
+        #print("気温")
+        #print("都市:{}".format(temp_city))
+        #print("最高気温:{}".format(temp_max))
+        #print("最低気温:{}".format(temp_min))
+    
     )
 
 if __name__ == "__main__":
