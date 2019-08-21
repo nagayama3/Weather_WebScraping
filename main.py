@@ -47,7 +47,7 @@ def callback():
 def handle_follow(event):
     line_bot_api.reply_message(
         reply_token=reply_token,
-        TextSendMessage(text='Hi! I am TenkiBot!')
+        TextSendMessage(text="Hi! I am TenkiBot!")
     )
 
 @handler.add(MessageEvent, message=TextMessage)
