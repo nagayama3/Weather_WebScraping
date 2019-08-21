@@ -1,5 +1,5 @@
 Flask==1.1.1
 line-bot-sdk==1.13.0
-urllib3==1.13.0
-beautifulsoup==4.7.
-soupsieve==1.6.1
+urllib3==1.25.3
+beautifulsoup==4.8.0
+soupsieve==1.9.2
