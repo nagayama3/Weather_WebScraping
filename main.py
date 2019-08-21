@@ -42,15 +42,16 @@ def callback():
         abort(400)
     #handleの処理を終えればOK
     return 'OK'
-
+'''
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text='Hi')
     )
-
+'''
 @handler.add(MessageEvent, message=TextMessage)
+
 def handle_message(event):
 
     #print("天気予報(地名を入力)")
