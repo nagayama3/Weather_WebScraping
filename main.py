@@ -1,7 +1,28 @@
 #-*- coding:utf-8 -*-
+
+import os
 import requests
 from bs4 import BeautifulSoup
+from flask import Flask, request, abort
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage
+)
 
+app = Flask(__name__)
+
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["Flm44iCp8oqFO2EQwFC017sc4Ybp1bBIRgOctjesD9oZXfucZLd6f05UREhIBq/A0NRUjDzniSYe0DvPOxFYiugbmQD2EEtQ4L9Wmz96aqdIxURg1cBiYUBF+k8bjLy40DCsd3/eAoB1aJpZW1tDFwdB04t89/1O/w1cDnyilFU="]
+YOUR_CHANNEL_SECRET = os.environ["6f26a2dc6157347d80ae518565dc16ad"]
+
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+
+@app.route("/callback", methods = ['POST'])
 def get_href(x):
 
     i = 201
@@ -21,11 +42,11 @@ def get_href(x):
 
     return href
 
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
 
-def print_tenki():
-
-    print("天気予報(地名を入力)")
-    region = input()
+    #print("天気予報(地名を入力)")
+    region = event.message.text
 
     number = get_href(region)
 
@@ -81,4 +102,6 @@ def print_tenki():
     print("最低気温:{}".format(temp_min))
 
 if __name__ == "__main__":
-    print_tenki()
+    #print_tenki()
+    port = int(os.getenv("PORT", 8000))
+    app.run(host="0.0.0.0", port=port)
