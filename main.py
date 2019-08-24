@@ -57,6 +57,7 @@ def handle_follow(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
+    '''
     #print("天気予報(地名を入力)")
     region = event.message.text
 
@@ -95,7 +96,8 @@ def handle_message(event):
     temp_min = min.text
     max = bsObj.find(class_="max")
     temp_max = max.text
-
+    '''
+    
     #出力
     line_bot_api.reply_message(
         #print("天気予報:{}".format(area))
