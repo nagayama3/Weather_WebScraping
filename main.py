@@ -47,9 +47,11 @@ def callback():
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='初めまして')
-        #reply_token=reply_token,
-        #TextSendMessage(text="Hi! I am TenkiBot!")
+        [
+            TextSendMessage(text='初めまして'+chr(0x10002D)+'\n'+'TenkiBotだよ！\n地名を入力すると、その場所の天気予報を返信するよ！\n'),
+            #reply_token=reply_token,
+            #TextSendMessage(text="Hi! I am TenkiBot!")
+        ]    
     )
 
 @handler.add(MessageEvent, message=TextMessage)
