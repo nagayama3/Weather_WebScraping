@@ -99,10 +99,10 @@ def handle_message(event):
 
     #出力
     line_bot_api.reply_message(
-        #print("天気予報:{}".format(area))
         event.reply_token,
         [
-            if (region != '石垣島' and temp_city == '石垣島'):
+            #地名が見つからなかったとき
+            if region != '石垣島' and temp_city == '石垣島' :
                 TextSendMessage(text=event.message.text+'の天気予報は見つかりませんでした'+chr(0x100029)+'\n' \
                                 +'違う地名を入力してください'+chr(0x10002E)
                                 )
