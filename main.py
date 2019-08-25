@@ -103,11 +103,11 @@ def handle_message(event):
             TextSendMessage(text='天気：'+today_weather),
             TextSendMessage(text='詳細：\n'+today_info),
             TextSendMessage(text='降水確率：'+today_rain),
-            TextSendMessage(text='気温'),
-            TextSendMessage(text='都市：'+temp_city),
-            TextSendMessage(text='最高気温：'+temp_max),
-            TextSendMessage(text='最低気温：'+temp_min),
-            TextSendMessage(text=url)
+            #TextSendMessage(text='気温'),
+            #TextSendMessage(text='都市：'+temp_city),
+            #TextSendMessage(text='最高気温：'+temp_max),
+            #TextSendMessage(text='最低気温：'+temp_min),
+            #TextSendMessage(text=url)
         ]
     
         #print("天気予報:{}県".format(region))
