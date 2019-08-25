@@ -57,8 +57,6 @@ def handle_follow(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-    '''
-    #print("天気予報(地名を入力)")
     region = event.message.text
 
     number = url_get.get_href(region)
@@ -96,14 +94,21 @@ def handle_message(event):
     temp_min = min.text
     max = bsObj.find(class_="max")
     temp_max = max.text
-    '''
     
     #出力
     line_bot_api.reply_message(
         #print("天気予報:{}".format(area))
-        event.reply_token,
-        TextSendMessage(text=event.message.text)
-        
+        event.reply_token,[
+            TextSendMessage(text=event.message.text+'県\n')
+            TextSendMessage(text='天気：'+today_weather)
+            TextSendMessage(text='詳細：\n'+today_info)
+            TextSendMessage(text='降水確率：'+today_rain)
+            TextSendMessage(text='気温')
+            TextSendMessage(text='都市：'+temp_city)
+            TextSendMessage(text='最高気温：'+temp_max)
+            TextSendMessage(text='最低気温：'+temp_min)
+            TextSendMessage(text=url)
+        ]
     
         #print("天気予報:{}県".format(region))
         #print()
