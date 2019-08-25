@@ -101,13 +101,18 @@ def handle_message(event):
     line_bot_api.reply_message(
         #print("天気予報:{}".format(area))
         event.reply_token,[
-            TextSendMessage(text=event.message.text+'の天気'+'\n' \
-                            +'【天気】\n'+today_weather+'\n' \
-                            +'【詳細】\n'+today_info+'\n' \
-                            +'【降水確率】\n'+today_rain+'\n' \
-                            +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
-                            +url+'\n' \
-                            +event.message.text[0])
+            if (event.message.text != '石垣島' ) & temp_city == '石垣島':
+                TextSendMessage(text=event.message.text+'の天気予報は見つかりませんでした'+chr(0x100029)+'\n' \
+                                +'違う地名を入力してください'+chr(0x10002E)
+                )
+            else:
+                TextSendMessage(text=event.message.text+'の天気'+'\n' \
+                                +'【天気】\n'+today_weather+'\n' \
+                                +'【詳細】\n'+today_info+'\n' \
+                                +'【降水確率】\n'+today_rain+'\n' \
+                                +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
+                                +url+'\n' \
+                )
         ]
     )
 
