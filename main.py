@@ -99,10 +99,13 @@ def handle_message(event):
     line_bot_api.reply_message(
         #print("天気予報:{}".format(area))
         event.reply_token,[
-            TextSendMessage(text=event.message.text+'県\n'),
-            TextSendMessage(text='天気：'+today_weather),
-            TextSendMessage(text='詳細：\n'+today_info),
-            TextSendMessage(text='降水確率：'+today_rain),
+            TextSendMessage(text=event.message.text+'\n'
+                            +'天気：'+today_weather+'\n詳細：\n'+today_info \
+                            +'\n降水確率：'+today_rain \
+                            +'\n気温\n'+temp_city+'：\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+url)
+            #TextSendMessage(text='天気：'+today_weather),
+            #TextSendMessage(text='詳細：\n'+today_info),
+            #TextSendMessage(text='降水確率：'+today_rain),
             #TextSendMessage(text='気温'),
             #TextSendMessage(text='都市：'+temp_city),
             #TextSendMessage(text='最高気温：'+temp_max),
