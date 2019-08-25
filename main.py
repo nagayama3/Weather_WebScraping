@@ -102,10 +102,10 @@ def handle_message(event):
         #print("天気予報:{}".format(area))
         event.reply_token,[
             TextSendMessage(text=event.message.text+'の天気'+'\n' \
-                            +'【天気】'+today_weather+'\n' \
+                            +'【天気】\n'+today_weather+'\n' \
                             +'【詳細】\n'+today_info+'\n' \
-                            +'【降水確率】'+today_rain+'\n' \
-                            +'【気温】('+temp_city+')'+'\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
+                            +'【降水確率】\n'+today_rain+'\n' \
+                            +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
                             +url+'\n' \
                             +event.message.text[0])
         ]
