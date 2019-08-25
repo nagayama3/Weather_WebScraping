@@ -48,9 +48,8 @@ def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
         [
-            TextSendMessage(text='初めまして'+chr(0x10002D)+'\n'+'TenkiBotだよ！\n地名を入力すると、その場所の天気予報を返信するよ！\n'),
-            #reply_token=reply_token,
-            #TextSendMessage(text="Hi! I am TenkiBot!")
+            TextSendMessage(text='初めまして'+chr(0x10002D)+'\n' \
+                                +'TenkiBotだよ！\n地名を入力すると、その場所の天気予報を返信するよ！\n'),
         ]    
     )
 
@@ -77,6 +76,8 @@ def handle_message(event):
     weather = bsObj.find(class_ = "weather")
     today_weather = weather.find("img").attrs['alt']
 
+    
+
 
     #詳細
     info = bsObj.find(class_ = "info")
@@ -88,46 +89,26 @@ def handle_message(event):
     today_rain = rain.text
 
     #気温
+
     city = bsObj.find(class_="city")
     temp_city = city.text
     min = bsObj.find(class_="min")
     temp_min = min.text
     max = bsObj.find(class_="max")
     temp_max = max.text
-    
+
     #出力
     line_bot_api.reply_message(
         #print("天気予報:{}".format(area))
         event.reply_token,[
-            TextSendMessage(text=event.message.text+'\n'
+            TextSendMessage(text=event.message.text+'の天気'+'\n' \
                             +'【天気】'+today_weather+'\n' \
                             +'【詳細】\n'+today_info+'\n' \
                             +'【降水確率】'+today_rain+'\n' \
                             +'【気温】('+temp_city+')'+'\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
-                            +url)
-            #TextSendMessage(text='天気：'+today_weather),
-            #TextSendMessage(text='詳細：\n'+today_info),
-            #TextSendMessage(text='降水確率：'+today_rain),
-            #TextSendMessage(text='気温'),
-            #TextSendMessage(text='都市：'+temp_city),
-            #TextSendMessage(text='最高気温：'+temp_max),
-            #TextSendMessage(text='最低気温：'+temp_min),
-            #TextSendMessage(text=url)
+                            +url+'\n' \
+                            +event.message.text[0])
         ]
-    
-        #print("天気予報:{}県".format(region))
-        #print()
-        #print("天気:")
-        #print("{}".format(today_weather))
-        #print("詳細:")
-        #print("{}".format(today_info))
-        #print()
-        #print("降水確率:{}".format(today_rain))
-        #print("気温")
-        #print("都市:{}".format(temp_city))
-        #print("最高気温:{}".format(temp_max))
-        #print("最低気温:{}".format(temp_min))
-    
     )
 
 if __name__ == "__main__":
