@@ -98,24 +98,28 @@ def handle_message(event):
     temp_max = max.text
 
     #出力
-    line_bot_api.reply_message(
-        event.reply_token,
-        [
-            #地名が見つからなかったとき
-            if region != '石垣島' and temp_city == '石垣島' :
-                TextSendMessage(text=event.message.text+'の天気予報は見つかりませんでした'+chr(0x100029)+'\n' \
+    #地名が見つからなかったとき
+    if region != '石垣島' and temp_city == '石垣島' :
+        line_bot_api.reply_message(
+            event.reply_token,
+            [
+            TextSendMessage(text=event.message.text+'の天気予報は見つかりませんでした'+chr(0x100029)+'\n' \
                                 +'違う地名を入力してください'+chr(0x10002E)
                                 )
-            else:
-                TextSendMessage(text=event.message.text+'の天気'+'\n' \
-                                +'【天気】\n'+today_weather+'\n' \
-                                +'【詳細】\n'+today_info+'\n' \
-                                +'【降水確率】\n'+today_rain+'\n' \
-                                +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
-                                +url+'\n' \
-                                )
-        ]
-    )
+            ]
+        )
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,[
+            TextSendMessage(text=event.message.text+'の天気'+'\n' \
+                            +'【天気】\n'+today_weather+'\n' \
+                            +'【詳細】\n'+today_info+'\n' \
+                            +'【降水確率】\n'+today_rain+'\n' \
+                            +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
+                            +url+'\n' \
+                            )
+            ]
+        )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
