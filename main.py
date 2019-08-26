@@ -115,7 +115,7 @@ def handle_message(event):
                             +'【天気】\n'+today_weather+'\n' \
                             +'【詳細】\n'+today_info+'\n' \
                             +'【降水確率】\n'+today_rain+'\n' \
-                            +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n' \
+                            +'【気温】('+temp_city+')\n'+'最高気温：'+temp_max+'\n最低気温：'+temp_min+'\n\n' \
                             +url+'\n' \
                             )
             ]
